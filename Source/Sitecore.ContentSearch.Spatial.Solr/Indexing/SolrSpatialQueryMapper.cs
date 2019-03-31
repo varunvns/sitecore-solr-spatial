@@ -1,4 +1,4 @@
-﻿using Sitecore.ContentSearch.Linq.Nodes;
+﻿//using Sitecore.ContentSearch.Linq.Nodes;
 using Sitecore.ContentSearch.Linq.Solr;
 using Sitecore.ContentSearch.Spatial.Solr.Nodes;
 using SolrNet;
@@ -11,9 +11,9 @@ namespace Sitecore.ContentSearch.Spatial.Solr.Indexing
         {
         }
 
-        protected override AbstractSolrQuery Visit(QueryNode node, SolrQueryMapperState state)
+        protected override AbstractSolrQuery Visit(Sitecore.ContentSearch.Linq.Nodes.QueryNode node, SolrQueryMapperState state)
         {
-            if (node.NodeType == QueryNodeType.Custom)
+            if (node.NodeType == Sitecore.ContentSearch.Linq.Nodes.QueryNodeType.Custom)
             {
                 if (node is WithinRadiusNode)
                 {

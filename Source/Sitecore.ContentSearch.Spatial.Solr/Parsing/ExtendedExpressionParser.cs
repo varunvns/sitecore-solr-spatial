@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using Sitecore.ContentSearch.Linq.Common;
 using Sitecore.ContentSearch.Linq.Nodes;
 using Sitecore.ContentSearch.Linq.Parsing;
-using Sitecore.ContentSearch.Spatial.Solr.Nodes;
+//using Sitecore.ContentSearch.Spatial.Solr.Nodes;
 
 namespace Sitecore.ContentSearch.Spatial.Solr.Parsing
 {
@@ -50,17 +50,19 @@ namespace Sitecore.ContentSearch.Spatial.Solr.Parsing
                 var fieldNode = queryNode as FieldNode;
                 
                 if (fieldNode != null)
-                    return new WithinRadiusNode(sourceNode, fieldNode.FieldKey, lat, lon, radius);
+                    return new Sitecore.ContentSearch.Spatial.Solr.Nodes.WithinRadiusNode(sourceNode, fieldNode.FieldKey, lat, lon, radius);
                 
-                throw new NotSupportedException(string.Format("Faceting can only be done on '{0}'. Expression used '{1}'", typeof(FieldNode).FullName, methodCall.Arguments[1].Type.FullName));
+                throw new NotSupportedException(
+                    $"Faceting can only be done on '{typeof(FieldNode).FullName}'. Expression used '{methodCall.Arguments[1].Type.FullName}'");
             }
             else
             {
                 var fieldNode = Visit(lambdaExpression.Body) as FieldNode;
                 if (fieldNode == null)
-                    throw new NotSupportedException(string.Format("Ordering can only be done on '{0}'. Expression used '{1}'", typeof(FieldNode).FullName, methodCall.Arguments[1].Type.FullName));
+                    throw new NotSupportedException(
+                        $"Ordering can only be done on '{typeof(FieldNode).FullName}'. Expression used '{methodCall.Arguments[1].Type.FullName}'");
 
-                return new WithinRadiusNode(sourceNode, fieldNode.FieldKey, lat, lon, radius);
+                return new Sitecore.ContentSearch.Spatial.Solr.Nodes.WithinRadiusNode(sourceNode, fieldNode.FieldKey, lat, lon, radius);
             }
         }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
-using Sitecore.ContentSearch.FieldReaders;
+﻿using Sitecore.ContentSearch.FieldReaders;
 using Sitecore.Data.Fields;
 
 namespace Sitecore.ContentSearch.Spatial.DataTypes.FieldReaders
